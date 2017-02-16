@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+	<!-- SEARCH FOR "REPLACE" -->
+	<!-- REPLACE WITH YOUR IMPLEMENTATION SCRIPT -->
+	<!-- Start Humany - implementation: "default" -->
+	<script>
+  (function(n,t,i,r,u,f,e){for(var o,s=/[?&]{1}(humany[^=]*)=([^&#]*)/g;o=s.exec(n.location.search);)i+=(i.indexOf("?")>-1?"&":"?")+o[1]+"="+o[2];
+  f=t.createElement(u);f.async=!0;f.src=i;e=t.getElementsByTagName(u)[0];e.parentNode.insertBefore(f,e);n[r]=n[r]||{_c:[],configure:function(t){n[r]._c.push(t)}}})
+  (window,document,"//help.humany.net/default/embed.js","Humany","script");
+	</script>
+	<!-- End Humany -->
+
+</head>
+<body>
+	<input type="search" id="search-phrase" />
+	<!-- REPLACE WITH YOUR INCLUDE LINK -->
+	<a href="//help.humany.net/admin-toplist-sv">Customer service</a>
+
+	<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+
+	<script>
+		Humany.configure(function (config) {
+
+			var widgetName = "admin-toplist-sv"; // REPLACE WITH WIDGET NAME
+			var searchTimeOut = null;
+			var phrase = "";
+
+			var input = "#search-phrase"; // REPLACE WITH INPUT FIELD SELECTOR
+
+			$(function () {
+				$(input).focus(function () {
+					$("#humany_" + widgetName).slideDown();
+				}).blur(function () {
+					$("#humany_" + widgetName).slideUp();
+				});
+			});
+
+			function search(context, phrase) {
+				context.router.navigate("index", { phrase: phrase }, {
+					silent: true, // Dont modify the hash
+					baseUrl: null, // Ignore home url (otherwice it will redirect to its parent widget)
+					widgetName: widgetName // Make sure to stay on "search" widget
+				});
+			}
+			var HumanySearchPlugin = {
+				name: "search.toplist",
+				init: function (data, context) {
+					// Code below is based on Chess' own search logic: https://www.chess.no/js/e757b86.js?v=rv49
+					phrase = $(input).keyup(function () {
+						if (this.value.length > 1 && $(this).val() != phrase) {
+							if (searchTimeOut) {
+								clearTimeout(searchTimeOut);
+								searchTimeOut = null
+							}
+							phrase = $(this).val();
+							searchTimeOut = setTimeout(function () {
+								search(context, phrase)
+							}, 300)
+						}
+					}).val();
+					// Execute search immediately if phrase is already present.
+					phrase && search(context, phrase);
+				}
+			}
+
+			config(widgetName).setTrigger("focus", input)
+			config(widgetName).registerPlugin(HumanySearchPlugin)
+		});
+
+	</script>
+</body>
+</html>
