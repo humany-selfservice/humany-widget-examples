@@ -4,32 +4,27 @@
     <meta charset="utf-8" />
     <title></title>
 
-	<!-- SEARCH FOR "REPLACE" -->
-	<!-- REPLACE WITH YOUR IMPLEMENTATION SCRIPT -->
+	<!-- LOOK OUT FOR "REPLACE" -->
+
+	<!-- REPLACE WITH YOUR IMPLEMENTATION SCRIPT FROM ADMIN -->
 	<!-- Start Humany - implementation: "default" -->
 	<script>
-  (function(n,t,i,r,u,f,e){for(var o,s=/[?&]{1}(humany[^=]*)=([^&#]*)/g;o=s.exec(n.location.search);)i+=(i.indexOf("?")>-1?"&":"?")+o[1]+"="+o[2];
-  f=t.createElement(u);f.async=!0;f.src=i;e=t.getElementsByTagName(u)[0];e.parentNode.insertBefore(f,e);n[r]=n[r]||{_c:[],configure:function(t){n[r]._c.push(t)}}})
-  (window,document,"//help.humany.net/default/embed.js","Humany","script");
+(function(n,t,i,r,u,f,e){for(var o,s=/[?&]{1}(humany[^=]*)=([^&#]*)/g;o=s.exec(n.location.search);)i+=(i.indexOf("?")>-1?"&":"?")+o[1]+"="+o[2];
+f=t.createElement(u);f.async=!0;f.src=i;e=t.getElementsByTagName(u)[0];e.parentNode.insertBefore(f,e);n[r]=n[r]||{_c:[],configure:function(t){n[r]._c.push(t)}}})
+(window,document,"//help.humany.net/default/embed.js","Humany","script");
 	</script>
 	<!-- End Humany -->
-
-</head>
-<body>
-	<input type="search" id="search-phrase" />
-	<!-- REPLACE WITH YOUR INCLUDE LINK -->
-	<a href="//help.humany.net/admin-toplist-sv">Customer service</a>
 
 	<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
 
 	<script>
 		Humany.configure(function (config) {
 
-			var widgetName = "admin-toplist-sv"; // REPLACE WITH WIDGET NAME
+			var widgetName = "admin-toplist-sv"; // REPLACE WITH YOUR WIDGET NAME
 			var searchTimeOut = null;
 			var phrase = "";
 
-			var input = "#search-phrase"; // REPLACE WITH INPUT FIELD SELECTOR
+			var input = "#search-phrase"; // REPLACE WITH YOUR INPUT FIELD'S SELECTOR
 
 			$(function () {
 				$(input).focus(function () {
@@ -49,7 +44,6 @@
 			var HumanySearchPlugin = {
 				name: "search.toplist",
 				init: function (data, context) {
-					// Code below is based on Chess' own search logic: https://www.chess.no/js/e757b86.js?v=rv49
 					phrase = $(input).keyup(function () {
 						if (this.value.length > 1 && $(this).val() != phrase) {
 							if (searchTimeOut) {
@@ -72,5 +66,12 @@
 		});
 
 	</script>
+</head>
+<body>
+	<input type="search" id="search-phrase" />
+	
+	<!-- REPLACE WITH YOUR INCLUDE LINK -->
+	<a href="//help.humany.net/admin-toplist-sv">&nbsp;</a>
+
 </body>
 </html>
