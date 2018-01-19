@@ -25,18 +25,24 @@
 				init: function (data, context) {
 					console.log("init", data, context);
 
-					// // detta är ett lämpligt ställe för t.ex. loggning
+					// // Detta är ett lämpligt ställe för t.ex. loggning
 					// context.router.on("change", function (route) {
 					// 	console.log("route change", route);
 					// });
 
-					// såhär kan man komma åt serviceClient är kopplat till 
+					// Såhär kan man komma åt serviceClient är kopplat till 
 					// gränssnittet "inline" som pluginet kopplats till nedan
 					// och hämta kontaktvägar konfade för gränssnittet
-					context.serviceClient.contacts(function(result){
+					context.serviceClient.contacts(function(result) {
 						console.log("serviceClient.contacts", result);
-					});
 
+						// Såhär ska man kunna hämta en guide-kategori och använda facetering för guide-sökning
+						var categoryId = result.Children[0].Attributes["Försäkring"];
+						context.serviceClient.match("", { categoryId: categoryId }, function(result){
+							console.log("serviceClient.match", result);
+						});
+					});
+					
 					// // Postning av formulär är tyvärr lite omständligt i dagsläget.
 					// // Jag hittade följande kod som vi använder idag.
 					// // Vi kommer återkomma till detta och göra förändringar innan maj.
@@ -69,9 +75,9 @@
 				}
 			}
 
-			// //Aktivera plugin för gränssnittet "inline"
+			// // Aktivera plugin för gränssnittet "inline"
 			config("inline").registerPlugin(HumanyHtmlManipulatePlugin);
-			// //Det är möjligt att konfa ett plugin för samtliga gränssnitt
+			// // Det är möjligt att konfa ett plugin för samtliga gränssnitt
 			//config("*").registerPlugin(HumanyHtmlManipulatePlugin)
 		});
 
