@@ -24,6 +24,34 @@
 				name: "manipulate.html",
 				init: function (data, context) {
 					console.log("init", data, context);
+
+					// // detta är ett lämpligt ställe för t.ex. loggning
+					// context.router.on("change", function (route) {
+					// 	console.log("route change", route);
+					// });
+
+					// såhär kan man komma åt serviceClient är kopplat till 
+					// gränssnittet "inline" som pluginet kopplats till nedan
+					// och hämta kontaktvägar konfade för gränssnittet
+					context.serviceClient.contacts(function(result){
+						console.log("serviceClient.contacts", result);
+					});
+
+					// // Postning av formulär är tyvärr lite omständligt i dagsläget.
+					// // Jag hittade följande kod som vi använder idag.
+					// // Vi kommer återkomma till detta och göra förändringar innan maj.
+					// var path = "contactmethods/" + data.contactMethod.Id;
+					// Humany.Adapters.createFormRequest(
+					// 	path,
+					// 	context,
+					// 	data,
+					// 	{ guideId: data.guideId }
+					// ).then(function (result) {
+					// 	resolve({ success: result.PostedSuccessfully });
+					// }).catch(function () {
+					// 	console.warn("Error posting form", arguments);
+					// 	reject();
+					// });
 				},
 				componentUpdated: function(data) {
 					if (data.componentName != "IndexView") {
@@ -41,7 +69,9 @@
 				}
 			}
 
+			// //Aktivera plugin för gränssnittet "inline"
 			config("inline").registerPlugin(HumanyHtmlManipulatePlugin);
+			// //Det är möjligt att konfa ett plugin för samtliga gränssnitt
 			//config("*").registerPlugin(HumanyHtmlManipulatePlugin)
 		});
 
