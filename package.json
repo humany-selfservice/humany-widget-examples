@@ -1,0 +1,24 @@
+{
+  "name": "humany-widget-integration-tests",
+  "version": "1.0.0",
+  "description": "Pages for widget integration test scenarios",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "connect": "^3.6.5",
+    "serve-static": "^1.13.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Humany/humany-widget-integration-tests.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Humany/humany-widget-integration-tests/issues"
+  },
+  "homepage": "https://github.com/Humany/humany-widget-integration-tests#readme"
+}

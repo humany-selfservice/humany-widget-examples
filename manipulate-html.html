@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+	<!-- LOOK OUT FOR "REPLACE" -->
+
+	<!-- REPLACE WITH YOUR IMPLEMENTATION SCRIPT FROM ADMIN -->
+	<!-- Start Humany - implementation: "Default" -->
+<script>
+	(function(n,t,i,r,u,f,e){for(var o,s=/[?&]{1}(humany[^=]*)=([^&#]*)/g;o=s.exec(n.location.search);)i+=(i.indexOf("?")>-1?"&":"?")+o[1]+"="+o[2];
+	f=t.createElement(u);f.async=!0;f.src=i;e=t.getElementsByTagName(u)[0];e.parentNode.insertBefore(f,e);n[r]=n[r]||{_c:[],configure:function(t){n[r]._c.push(t)}}})
+	(window,document,"//labs.humany.net/default/embed.js","Humany","script");
+</script>
+<!-- End Humany -->
+
+	<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+
+	<script>
+		Humany.configure(function (config) {
+
+			var HumanyHtmlManipulatePlugin = {
+				name: "manipulate.html",
+				init: function (data, context) {
+					console.log("init", data, context);
+				},
+				componentUpdated: function(data) {
+					if (data.componentName != "IndexView") {
+						return;
+					}
+					
+					var breadcrumbElement = $(".humany-breadcrumbs", data.domElement)[0];
+					if ($(breadcrumbElement).hasClass("relocated-breadcrumb")) {
+						return;
+					}
+
+					$(breadcrumbElement).addClass("relocated-breadcrumb");
+					console.log("componentUpdated", breadcrumbElement);
+					//TODO: move
+				}
+			}
+
+			config("inline").registerPlugin(HumanyHtmlManipulatePlugin);
+			//config("*").registerPlugin(HumanyHtmlManipulatePlugin)
+		});
+
+	</script>
+</head>
+<body>
+	<a href="//labs.humany.net/inline">Kundservice</a>
+</body>
+</html>
